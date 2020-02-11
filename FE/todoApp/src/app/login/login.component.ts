@@ -16,9 +16,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
-      username: "",
-      password: ""
+      username: [""],
+      password: [""]
     })
+
+    this.formLogin.get("username").patchValue("tienpm1")
+  }
+
+  onSubmit() {
+    console.log(this.formLogin.value.username)
   }
 
 }
