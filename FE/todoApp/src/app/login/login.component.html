@@ -1,0 +1,21 @@
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <h4 style="text-align: left; color: rgb(30, 110, 6);">
+        LOGIN
+    </h4>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>User name</mat-label>
+        <input matInput type="text" class="form-control" formControlName="username">
+    </mat-form-field>
+
+    <div class="modal-body">
+        <mat-form-field class="example-full-width">
+            <mat-label>Pass word</mat-label>
+            <input matInput type="text" class="form-control" formControlName="password">
+        </mat-form-field>
+    </div>
+
+    <div>
+        <button type="submit" mat-raised-button color="primary">Login</button>    
+    </div>
+</form>
