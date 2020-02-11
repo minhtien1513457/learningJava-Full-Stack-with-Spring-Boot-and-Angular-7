@@ -7,9 +7,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSortModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatSortModule, MatToolbarModule, MatIconModule } from '@angular/material';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
+import { MenuComponent } from './menu/menu.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,15 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
     WelcomeComponent,
     LoginComponent,
     ErrorComponent,
-    ListTodosComponent
+    ListTodosComponent,
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,
     MatSortModule,
+    MatIconModule,
+    MatToolbarModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
