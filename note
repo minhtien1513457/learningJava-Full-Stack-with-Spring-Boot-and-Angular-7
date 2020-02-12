@@ -1,0 +1,12 @@
+3 KEYS ABOUT WEB SERVICE
+	1. Designed for machine-to-machine (or aplication to aplication) interaction
+	2. Should be interoperable -Not platform dependent
+	3. Should allow communication over a network
+
+
+
+key word:
+	1.request is the input 	of our webservice
+	2.request is the output of our webservice
+	3.The web service here is called a service provider. Service provider is the one which hosts the web service.
+	4.The service consumer is the one which is consuming the web service. Application A

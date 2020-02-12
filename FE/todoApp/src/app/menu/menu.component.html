@@ -2,10 +2,10 @@
     <mat-toolbar-row>
         <span class="menu-spacer"></span>
         <div>
-            <a mat-button routerLink="/welcome"> Home </a>
-            <a mat-button routerLink="/todos"> Todos </a>
-            <a mat-button routerLink="/login"> Login </a>
-            <a mat-button routerLink="/logout"> Logout </a>
+            <a mat-button *ngIf = "this.authenticationService.isAuthenticated()" href="/welcome"> Home </a>
+            <a mat-button *ngIf = "this.authenticationService.isAuthenticated()" routerLink="/todos"> Todos </a>
+            <a mat-button *ngIf = "!this.authenticationService.isAuthenticated()" routerLink="/login"> Login </a>
+            <a mat-button *ngIf = "this.authenticationService.isAuthenticated()" routerLink="/logout"> Logout </a>
         </div>
         
     </mat-toolbar-row>

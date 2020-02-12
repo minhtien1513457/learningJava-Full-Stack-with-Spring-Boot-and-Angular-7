@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthenticationService } from '../service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +11,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   public formLogin: FormGroup;
-
+  public errorLogin: boolean = false;
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -20,11 +24,16 @@ export class LoginComponent implements OnInit {
       password: [""]
     })
 
-    this.formLogin.get("username").patchValue("tienpm1")
+    this.formLogin.get("username").patchValue("tienpm")
   }
 
   onSubmit() {
-    console.log(this.formLogin.value.username)
+    if (this.authenticationService.authenticate(this.formLogin.value.username, this.formLogin.value.password)) {
+      this.errorLogin = false;
+      this.router.navigate(["/welcome"]);
+    } else {
+      this.errorLogin = true;
+    }  
   }
 
 }
