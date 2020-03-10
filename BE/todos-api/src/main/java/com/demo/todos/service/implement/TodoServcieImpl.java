@@ -47,8 +47,10 @@ public class TodoServcieImpl implements TodoService {
 	}
 
 	@Override
-	public TodoVo save(TodoEntity obj) {
-		TodoVo res = populateTodo(todoDao.save(obj));
+	public TodoVo save(TodoEntity objDetail) {
+		TodoVo res = this.findOne(objDetail.getId());
+		res = populateTodo(objDetail);
+		todoDao.save(objDetail);
 		return res;
 	}
 

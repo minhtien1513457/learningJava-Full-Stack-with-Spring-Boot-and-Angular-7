@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.demo.todos.model.TodoEntity;
+import com.demo.todos.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,35 +27,29 @@ import com.demo.todos.vo.TodoVo;
 @RequestMapping(value = "/api")
 public class TodosController {
 	@Autowired
-    private ITodoDao todoDao;
+    private TodoService todoService;
 	
 	 @GetMapping("/todos")
 	    public List<TodoVo> getAllTodos() {
-	        return todoDao.findAll();
+	        return todoService.getAll();
 	    }
 	 
-	 @GetMapping("/employees/{id}")
-	    public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") Integer employeeId){
-	        Employee employee = employeeService.findOne(employeeId);
-	        return ResponseEntity.ok().body(employee);
+	 @GetMapping("/todos/{id}")
+	    public ResponseEntity<TodoVo> getTodoById(@PathVariable(value = "id") Long todoId){
+		 TodoVo todo = todoService.findOne(todoId);
+	        return ResponseEntity.ok().body(todo);
 	    }
 	 
-	 @PostMapping("/employees")
-	    public Employee createEmployee(@Valid @RequestBody Employee employee) {
-	        return employeeService.save(employee);
+	 @PostMapping("/todos")
+	    public TodoVo createTodo(@Valid @RequestBody TodoEntity obj) {
+	        return todoService.save(obj);
 	    }
 
 	 @PutMapping("/employees/{id}")
-	    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Integer employeeId,
-	         @Valid @RequestBody Employee employeeDetails) {
-	        Employee employee = employeeService.findOne(employeeId);
-
-	        employee.setEmailId(employeeDetails.getEmailId());
-	        employee.setLastName(employeeDetails.getLastName());
-	        employee.setFirstName(employeeDetails.getFirstName());
-	        
-	        final Employee updatedEmployee = employeeService.save(employee);
-	        return ResponseEntity.ok(updatedEmployee);
+	    public ResponseEntity<TodoVo> updateTodo(@PathVariable(value = "id") Long todoId,
+	         @Valid @RequestBody TodoEntity objDetail) {
+	        final TodoVo updatedObj = todoService.save(objDetail);
+	        return ResponseEntity.ok(updatedObj);
 	    }
 	 
 	 @DeleteMapping("/employees/{id}")
