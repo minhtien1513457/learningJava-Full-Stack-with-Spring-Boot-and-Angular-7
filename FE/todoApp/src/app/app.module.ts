@@ -13,6 +13,8 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpIntercepterBasicAuthService } from './service/http-intercepter-basic-auth.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { LogoutComponent } from './logout/logout.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
